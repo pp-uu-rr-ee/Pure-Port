@@ -32,7 +32,7 @@ export default function Home() {
 
         <div className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden mb-6 md:mb-8 border-4 border-white/10 shadow-xl relative group">
           <Image
-            src="/pure.jpg"
+            src="/Pure-Port/pure.jpg"
             alt="Profile Photo"
             width={200}
             height={200}
