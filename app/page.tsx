@@ -1,65 +1,242 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { IoMail, IoCall, IoLocation, IoLogoGithub, IoLogoFacebook, IoLogoInstagram, IoChevronDown, IoChevronUp } from "react-icons/io5";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("about");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
+  const projects = [
+    { title: "SeeU BKK", desc: "An interactive map and chatbot-enabled web application for suggesting thai local communities and routes", category: "Web Development" },
+    { title: "To Do List UI", desc: "An UI design for productivity application", category: "Design" }
+  ];
+
+  const filteredProjects = activeCategory === "All" ? projects : projects.filter(p => p.category === activeCategory);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="flex flex-col md:flex-row gap-6 md:gap-8 max-w-6xl w-full p-4 md:p-8 items-stretch justify-center min-h-[80vh] z-10">
+      {/* Left Card: Profile & Contact */}
+      <div className="relative flex-none w-full md:w-[350px] flex flex-col p-8 md:p-10 items-center text-center bg-slate-800/70 border border-white/10 rounded-3xl backdrop-blur-xl shadow-2xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-3xl overflow-hidden h-fit md:sticky md:top-8 z-20">
+        
+        {/* Mobile Toggle Button */}
+        <button 
+          className="absolute top-0 right-0 md:hidden bg-white/5 border-b border-l border-white/10 rounded-bl-2xl px-4 py-3 text-xs font-medium text-accent hover:text-accent-hover transition-colors flex items-center gap-2 z-30"
+          onClick={() => setIsContactOpen(!isContactOpen)}
+        >
+          {isContactOpen ? "Hide Contacts" : "Show Contacts"}
+          {isContactOpen ? <IoChevronUp /> : <IoChevronDown />}
+        </button>
+
+        <div className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden mb-6 md:mb-8 border-4 border-white/10 shadow-xl relative group">
+          <Image
+            src="/pure.jpg"
+            alt="Profile Photo"
+            width={200}
+            height={200}
+            className="w-full h-full object-cover"
+            priority
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <h1 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Bhuvadej Anankusri</h1>
+        <h2 className="text-sm md:text-lg text-accent mb-6 md:mb-8 font-medium tracking-wide">Full-Stack Developer</h2>
+        
+        <div className={`w-full flex flex-col transition-all duration-500 ease-in-out origin-top overflow-hidden ${isContactOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0 md:max-h-[600px] md:opacity-100'}`}>
+          <div className="w-full flex flex-col gap-4 border-t border-white/10 pt-6 md:border-t-0 md:pt-0">
+            <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl transition-colors duration-200 hover:bg-white/10">
+              <div className="w-10 h-10 rounded-lg bg-accent/20 text-accent flex items-center justify-center text-xl shrink-0"><IoMail /></div>
+              <div className="flex flex-col items-start overflow-hidden">
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Email</span>
+                <span className="text-sm font-medium text-slate-100 truncate w-full text-left">bhuvd.anks@gmail.com</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl transition-colors duration-200 hover:bg-white/10">
+              <div className="w-10 h-10 rounded-lg bg-accent/20 text-accent flex items-center justify-center text-xl shrink-0"><IoCall /></div>
+              <div className="flex flex-col items-start overflow-hidden">
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Phone</span>
+                <span className="text-sm font-medium text-slate-100 truncate w-full text-left">+66 96 154 9297</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl transition-colors duration-200 hover:bg-white/10">
+              <div className="w-10 h-10 rounded-lg bg-accent/20 text-accent flex items-center justify-center text-xl shrink-0"><IoLocation /></div>
+              <div className="flex flex-col items-start overflow-hidden">
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Location</span>
+                <span className="text-sm font-medium text-slate-100 truncate w-full text-left">Bangkok, Thailand</span>
+              </div>
+            </div>
+          </div>
+
+        <div className="mt-auto pt-8 flex items-center justify-center gap-4 w-full">
+          <a href="https://github.com/pp-uu-rr-ee" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white hover:-translate-y-1 transition-all duration-300">
+              <IoLogoGithub size={24} />
+            </a>
+          <a href="https://www.facebook.com/purebhuvadej" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white hover:-translate-y-1 transition-all duration-300">
+              <IoLogoFacebook size={24} />
+            </a>
+          <a href="https://www.instagram.com/pp.uu.rr.ee/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white hover:-translate-y-1 transition-all duration-300">
+              <IoLogoInstagram size={24} />
+            </a>
+          </div>
         </div>
-      </main>
-    </div>
+      </div>
+
+      {/* Right Card: Nav & Data */}
+      <div className="flex-1 flex flex-col relative bg-slate-800/70 border border-white/10 rounded-3xl backdrop-blur-xl shadow-2xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-3xl overflow-hidden">
+        <nav className="flex flex-wrap justify-center md:justify-end p-6 md:p-8 gap-4 md:gap-8">
+          {["about", "resume", "portfolio", "contact"].map((tab) => (
+            <button 
+              key={tab}
+              onClick={() => setActiveTab(tab)} 
+              className={`font-semibold text-base outline-none relative pb-1 capitalize transition-colors duration-200 ${activeTab === tab ? "text-slate-100" : "text-slate-400 hover:text-slate-100"} group`}
+            >
+              {tab}
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-accent transition-all duration-300 ${activeTab === tab ? "w-full" : "w-0 group-hover:w-full"}`}></span>
+            </button>
+          ))}
+        </nav>
+
+        {activeTab === "about" && (
+          <div className="px-6 pb-8 md:px-12 md:pb-12 flex-1 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-1 after:bg-accent after:rounded-full">About Me</h2>
+            <p className="text-slate-400 leading-relaxed text-base md:text-lg mb-6">
+              Hi, my name is Bhuvadej Anankusri. You can call me Pure. I’m a passionate full-stack developer specializing in building exceptional digital experiences. I enjoy turning complex problems into simple, beautiful, and intuitive designs.
+            </p>
+            <p className="text-slate-400 leading-relaxed text-base md:text-lg mb-6">
+              I have hands-on experience with modern web technologies such as React, Node.js, and RESTful APIs. I’m also familiar with databases like MySQL, and PostgreSQL, and I continuously explore new tools to improve my workflow. My goal is to grow as a full-stack developer by building scalable and user-friendly applications that solve real-world problems.
+            </p>
+            <p className="text-slate-400 leading-relaxed text-base md:text-lg mb-6">
+              When I’m not coding, you’ll find me exploring the outdoors, reading manga, or tinkering with new web technologies.
+            </p>
+            <p className="text-slate-400 leading-relaxed text-base md:text-lg mb-6">
+              I believe in the power of the web to connect people and bring ideas to life.
+            </p>
+
+            <h3 className="text-xl md:text-2xl font-bold text-slate-100 mb-6 md:mb-8 flex items-center gap-3">What I do</h3>
+            <div className="flex flex-wrap gap-3 md:gap-4">
+              {["React / Next.js", "TypeScript", "Tailwind CSS", "UI / UX Design", "Web Animations", "Node.js / Express", "RESTful APIs", "Git / GitHub", "Responsive Design", "PostgreSQL / Supabase"].map((skill) => (
+                <span key={skill} className="bg-accent/10 text-accent-hover px-4 py-2 rounded-full text-sm font-medium border border-accent/20">{skill}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "resume" && (
+          <div className="px-6 pb-8 md:px-12 md:pb-12 flex-1 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-1 after:bg-accent after:rounded-full">Resume</h2>
+            <p className="text-slate-400 leading-relaxed text-base md:text-lg mb-10">
+              A brief overview of my professional experience and education.
+            </p>
+            
+            {/* Education Timeline */}
+            <h3 className="text-2xl font-bold text-slate-100 mb-8 flex items-center gap-3">Education</h3>
+            <div className="relative border-l-2 border-white/10 ml-4 pl-8 space-y-10 mb-12">
+              <div className="relative group">
+                <div className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-slate-600 border-2 border-slate-900 group-hover:bg-accent group-hover:border-accent/30 group-hover:shadow-[0_0_10px_var(--color-accent)] transition-all duration-300"></div>
+                <h4 className="text-slate-100 text-xl font-semibold mb-1 group-hover:text-accent transition-colors duration-300">Bachelor of Science in Information Technology</h4>
+                <p className="text-accent text-sm mb-3 font-medium">King Mongkut's Institute of Technology Ladkrabang<br></br>2023 - 2026</p>
+                <p className="text-slate-400 leading-relaxed">
+                  Currently studying. Coursework included Data Structures, Algorithms, Web Engineering, and Software Architecture.
+                </p>
+              </div>
+              <div className="relative group">
+                <div className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-slate-600 border-2 border-slate-900 group-hover:bg-accent group-hover:border-accent/30 group-hover:shadow-[0_0_10px_var(--color-accent)] transition-all duration-300"></div>
+                <h4 className="text-slate-100 text-xl font-semibold mb-1 group-hover:text-accent transition-colors duration-300">High School Diploma</h4>
+                <p className="text-accent text-sm mb-3 font-medium">Chulalongkorn University Demonstration Secondary School<br></br>2016 - 2022</p>
+                <p className="text-slate-400 leading-relaxed">
+                  Focus on Mathematics and Sciences.
+                </p>
+              </div>
+            </div>
+
+            {/* Experience Section */}
+            <h3 className="text-2xl font-bold text-slate-100 mb-8 flex items-center gap-3">Experience</h3>
+            <div className="flex flex-col gap-6">
+              <div className="bg-white/5 p-6 rounded-2xl hover:bg-white/10 transition-colors duration-300 border border-transparent hover:border-white/10">
+                <h4 className="text-slate-100 text-xl font-semibold mb-2">Project</h4>
+                <p className="text-accent text-sm mb-4 font-medium">2025 - 2026</p>
+                <p className="text-slate-400 leading-relaxed">Loading...</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "portfolio" && (
+          <div className="px-6 pb-8 md:px-12 md:pb-12 flex-1 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-1 after:bg-accent after:rounded-full">Portfolio</h2>
+            
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-4 mb-8">
+              {["All", "Web Development", "Design"].map(category => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
+                    activeCategory === category 
+                      ? "bg-accent text-white" 
+                      : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-slate-200"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {filteredProjects.map((project, idx) => (
+                <div key={idx} className="bg-white/5 p-6 rounded-2xl text-center group cursor-pointer transition-colors hover:bg-white/10 animate-fade-in">
+                  <div className="bg-accent/20 h-32 rounded-xl mb-4 flex items-center justify-center text-accent transition-transform group-hover:scale-[1.02]">
+                    Image
+                  </div>
+                  <h4 className="text-slate-100 mb-2 font-medium">{project.title}</h4>
+                  <p className="text-slate-400 text-sm">{project.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "contact" && (
+          <div className="px-6 pb-8 md:px-12 md:pb-12 flex-1 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-1 after:bg-accent after:rounded-full">Contact</h2>
+            <p className="text-slate-400 leading-relaxed text-base md:text-lg mb-8">
+              I'm currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            </p>
+            
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const name = formData.get('name');
+                const subject = formData.get('subject');
+                const message = formData.get('message');
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=bhuvd.anks@gmail.com&su=${encodeURIComponent(subject as string)}&body=${encodeURIComponent(`From: ${name}\n\n${message}`)}`;
+                window.open(gmailUrl, '_blank');
+              }}
+              className="flex flex-col gap-6"
+            >
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-400 mb-2">Name</label>
+                  <input type="text" id="name" name="name" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors" placeholder="Your Name or Company" />
+                </div>
+                <div className="flex-1">
+                  <label htmlFor="subject" className="block text-sm font-medium text-slate-400 mb-2">Subject</label>
+                  <input type="text" id="subject" name="subject" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors" placeholder="Subject" />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-400 mb-2">Message</label>
+                <textarea id="message" name="message" required rows={5} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none" placeholder="Hello, I'd like to talk about..."></textarea>
+              </div>
+              <button type="submit" className="self-start bg-accent hover:bg-accent-hover text-white font-medium py-3 px-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/30 flex items-center gap-2">
+                Send Message
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
+    </main>
   );
 }
