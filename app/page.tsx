@@ -10,8 +10,10 @@ export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   const projects = [
-    { title: "SeeU BKK", desc: "An interactive map and chatbot-enabled web application for suggesting thai local communities and routes", category: "Web Development" },
-    { title: "To Do List UI", desc: "An UI design for productivity application", category: "Design" }
+    { title: "SeeU Bangkok", desc: "An AI-powered travel discovery platform for finding places, planning trips, and exploring Bangkok through an interactive map and chat experience.", category: "Web Development", image: "/Pure-Port/SeeU-BKK.png", link: "https://github.com/pp-uu-rr-ee/SeeU-BKK" },
+    { title: "Book Cube", desc: "BookCube is a comprehensive e-book platform and reading library designed to help you discover, track, and enjoy your favorite books seamlessly.", category: "Web Development", image: "/Pure-Port/SeeU-BKK.png", link: "https://github.com/pp-uu-rr-ee/Book-Cube" },
+    { title: "IT Inventory", desc: "A full-stack web application designed to help businesses efficiently manage their IT assets, equipment, and inventory.", category: "Web Development", image: "/Pure-Port/IT-Inventory.png", link: "https://github.com/pp-uu-rr-ee/IT-Inventory" },
+    { title: "To Do List UI", desc: "An UI design for To-Do List application.", category: "Design", image: "/Pure-Port/to-do-list.png", link: "https://www.figma.com/proto/Mt2ciBBo8Bv7hvF4XQa9rw/ToDoListUI?t=hPy5YUzxb4RtIeur-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=1-4051&starting-point-node-id=1%3A4051" }
   ];
 
   const filteredProjects = activeCategory === "All" ? projects : projects.filter(p => p.category === activeCategory);
@@ -185,13 +187,22 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {filteredProjects.map((project, idx) => (
-                <div key={idx} className="bg-white/5 p-6 rounded-2xl text-center group cursor-pointer transition-colors hover:bg-white/10 animate-fade-in">
-                  <div className="bg-accent/20 h-32 rounded-xl mb-4 flex items-center justify-center text-accent transition-transform group-hover:scale-[1.02]">
-                    Image
+                <a key={idx} href={project.link} target="_blank" rel="noopener noreferrer" className="bg-white/5 p-6 rounded-2xl text-center group cursor-pointer transition-colors hover:bg-white/10 animate-fade-in block">
+                  <div className="bg-accent/20 h-32 rounded-xl mb-4 flex items-center justify-center text-accent transition-transform group-hover:scale-[1.02] relative overflow-hidden">
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      "Image"
+                    )}
                   </div>
                   <h4 className="text-slate-100 mb-2 font-medium">{project.title}</h4>
                   <p className="text-slate-400 text-sm">{project.desc}</p>
-                </div>
+                </a>
               ))}
             </div>
           </div>
