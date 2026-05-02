@@ -116,10 +116,43 @@ export default function Home() {
             </p>
 
             <h3 className="text-xl md:text-2xl font-bold text-slate-100 mb-6 md:mb-8 flex items-center gap-3">What I do</h3>
-            <div className="flex flex-wrap gap-3 md:gap-4">
-              {["React / Next.js", "TypeScript", "Tailwind CSS", "UI / UX Design", "Web Animations", "Node.js / Express", "RESTful APIs", "Git / GitHub", "Responsive Design", "PostgreSQL / Supabase"].map((skill) => (
+            <div className="flex flex-wrap gap-3 md:gap-4 mb-6">
+              {["Full-Stack Web Development", "AI Integration & Agentic Workflows", "Geospatial & Interactive Mapping Solutions", "Responsive & Mobile-Centric UI/UX"].map((skill) => (
                 <span key={skill} className="bg-accent/10 text-accent-hover px-4 py-2 rounded-full text-sm font-medium border border-accent/20">{skill}</span>
               ))}
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-bold text-slate-100 mb-6 md:mb-2 flex items-center gap-3">Tech Stack</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {/* Frontend */}
+              <div>
+                <h4 className="text-lg font-semibold text-slate-200 mb-4 border-b border-white/10 pb-2">Frontend</h4>
+                <div className="flex flex-wrap gap-2">
+                  {["React / Next.js", "TypeScript", "Tailwind CSS", "Mapbox GL JS", "shadcn/ui & Lucide React", "motion/react", "HTML", "CSS", "JavaScript"].map((skill) => (
+                    <span key={skill} className="bg-accent/10 text-accent-hover px-3 py-1.5 rounded-full text-xs font-medium border border-accent/20">{skill}</span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Backend */}
+              <div>
+                <h4 className="text-lg font-semibold text-slate-200 mb-4 border-b border-white/10 pb-2">Backend</h4>
+                <div className="flex flex-wrap gap-2">
+                  {["Node.js / Express", "RESTful APIs", "PostgreSQL / Supabase", "Python / Django", "Hono on Bun", "LangGraph / RAG", "SQLite"].map((skill) => (
+                    <span key={skill} className="bg-accent/10 text-accent-hover px-3 py-1.5 rounded-full text-xs font-medium border border-accent/20">{skill}</span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Tools */}
+              <div>
+                <h4 className="text-lg font-semibold text-slate-200 mb-4 border-b border-white/10 pb-2">Tools</h4>
+                <div className="flex flex-wrap gap-2">
+                  {["Git / GitHub", "Vercel", "Figma", "VS Code", "Supabase", "Bun", "Drizzle ORM", "Turborepo"].map((skill) => (
+                    <span key={skill} className="bg-accent/10 text-accent-hover px-3 py-1.5 rounded-full text-xs font-medium border border-accent/20">{skill}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
