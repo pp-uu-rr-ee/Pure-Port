@@ -128,7 +128,7 @@ export default function Home() {
               <div>
                 <h4 className="text-lg font-semibold text-slate-200 mb-4 border-b border-white/10 pb-2">Frontend</h4>
                 <div className="flex flex-wrap gap-2">
-                  {["React / Next.js", "TypeScript", "Tailwind CSS", "Mapbox GL JS", "shadcn/ui & Lucide React", "motion/react", "HTML", "CSS", "JavaScript"].map((skill) => (
+                  {["React / Next.js", "TypeScript", "Tailwind CSS", "Mapbox GL JS", "shadcn/ui & Lucide React", "Framer Motion"].map((skill) => (
                     <span key={skill} className="bg-accent/10 text-accent-hover px-3 py-1.5 rounded-full text-xs font-medium border border-accent/20">{skill}</span>
                   ))}
                 </div>
@@ -138,7 +138,7 @@ export default function Home() {
               <div>
                 <h4 className="text-lg font-semibold text-slate-200 mb-4 border-b border-white/10 pb-2">Backend</h4>
                 <div className="flex flex-wrap gap-2">
-                  {["Node.js / Express", "RESTful APIs", "PostgreSQL / Supabase", "Python / Django", "Hono on Bun", "LangGraph / RAG", "SQLite"].map((skill) => (
+                  {["Node.js (Express)", "Hono (Bun)", "RESTful APIs", "PostgreSQL / Supabase", "Authentication & Database Design", "AI Integration (RAG / Agent Workflows)", "Python (Django) (prior experience)"].map((skill) => (
                     <span key={skill} className="bg-accent/10 text-accent-hover px-3 py-1.5 rounded-full text-xs font-medium border border-accent/20">{skill}</span>
                   ))}
                 </div>
@@ -148,7 +148,7 @@ export default function Home() {
               <div>
                 <h4 className="text-lg font-semibold text-slate-200 mb-4 border-b border-white/10 pb-2">Tools</h4>
                 <div className="flex flex-wrap gap-2">
-                  {["Git / GitHub", "Vercel", "Figma", "VS Code", "Supabase", "Bun", "Drizzle ORM", "Turborepo"].map((skill) => (
+                  {["Git / GitHub", "Vercel", "Figma", "VS Code", "Drizzle ORM", "Turborepo"].map((skill) => (
                     <span key={skill} className="bg-accent/10 text-accent-hover px-3 py-1.5 rounded-full text-xs font-medium border border-accent/20">{skill}</span>
                   ))}
                 </div>
@@ -161,7 +161,7 @@ export default function Home() {
           <div className="px-6 pb-8 md:px-12 md:pb-12 flex-1 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-10 after:h-1 after:bg-accent after:rounded-full">Resume</h2>
             <p className="text-slate-400 leading-relaxed text-base md:text-lg mb-10">
-              A brief overview of my professional experience and education.
+              A brief overview of my education and experience.
             </p>
             
             {/* Education Timeline */}
@@ -188,10 +188,113 @@ export default function Home() {
             {/* Experience Section */}
             <h3 className="text-2xl font-bold text-slate-100 mb-8 flex items-center gap-3">Experience</h3>
             <div className="flex flex-col gap-6">
-              <div className="bg-white/5 p-6 rounded-2xl hover:bg-white/10 transition-colors duration-300 border border-transparent hover:border-white/10">
-                <h4 className="text-slate-100 text-xl font-semibold mb-2">Project</h4>
-                <p className="text-accent text-sm mb-4 font-medium">2025 - 2026</p>
-                <p className="text-slate-400 leading-relaxed">Loading...</p>
+              <div className="relative group bg-white/5 p-6 md:p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 border border-transparent hover:border-white/10 hover:shadow-lg hover:-translate-y-1 overflow-hidden">
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-2">
+                  <div>
+                    <h4 className="text-slate-100 text-xl md:text-2xl font-bold group-hover:text-accent transition-colors duration-300">SeeU-BKK</h4>
+                    <p className="text-slate-400 text-sm font-medium mt-1">Geospatial Web Application</p>
+                  </div>
+                  <div className="inline-flex items-center justify-center bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold border border-accent/20 whitespace-nowrap self-start">
+                    2025 - 2026
+                  </div>
+                </div>
+                
+                <ul className="space-y-3 text-slate-300 text-sm md:text-base leading-relaxed mb-6">
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Built a location-based web platform with interactive maps using Mapbox GL JS</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Built full-stack architecture with Next.js, Hono (Bun), and Supabase</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Implemented real-time features using Server-Sent Events (SSE)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Designed scalable API structure and database schema</span>
+                  </li>
+                </ul>
+
+                <div className="flex flex-wrap gap-2 pt-5 border-t border-white/5">
+                  {["Next.js", "TypeScript", "Hono", "Supabase", "Mapbox GL JS", "Drizzle ORM"].map((tech) => (
+                    <span key={tech} className="bg-slate-800/80 text-slate-300 px-3 py-1 rounded-md text-xs font-medium border border-white/5 group-hover:border-accent/30 transition-colors">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative group bg-white/5 p-6 md:p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 border border-transparent hover:border-white/10 hover:shadow-lg hover:-translate-y-1 overflow-hidden">
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-2">
+                  <div>
+                    <h4 className="text-slate-100 text-xl md:text-2xl font-bold group-hover:text-accent transition-colors duration-300">IT-Inventory</h4>
+                    <p className="text-slate-400 text-sm font-medium mt-1">Management System / Dashboard</p>
+                  </div>
+                  <div className="inline-flex items-center justify-center bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold border border-accent/20 whitespace-nowrap self-start">
+                    2025 - 2026
+                  </div>
+                </div>
+                
+                <ul className="space-y-3 text-slate-300 text-sm md:text-base leading-relaxed mb-6">
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Built a full-stack inventory management system with CRUD operations</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Designed responsive dashboard UI and structured database system</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Implemented REST APIs and backend logic for data handling</span>
+                  </li>
+                </ul>
+
+                <div className="flex flex-wrap gap-2 pt-5 border-t border-white/5">
+                  {["Next.js", "Node.js", "Express", "SQLite"].map((tech) => (
+                    <span key={tech} className="bg-slate-800/80 text-slate-300 px-3 py-1 rounded-md text-xs font-medium border border-white/5 group-hover:border-accent/30 transition-colors">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative group bg-white/5 p-6 md:p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 border border-transparent hover:border-white/10 hover:shadow-lg hover:-translate-y-1 overflow-hidden">
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-2">
+                  <div>
+                    <h4 className="text-slate-100 text-xl md:text-2xl font-bold group-hover:text-accent transition-colors duration-300">Book-Cube</h4>
+                    <p className="text-slate-400 text-sm font-medium mt-1">Online Book Platform</p>
+                  </div>
+                  <div className="inline-flex items-center justify-center bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold border border-accent/20 whitespace-nowrap self-start">
+                    2024
+                  </div>
+                </div>
+                
+                <ul className="space-y-3 text-slate-300 text-sm md:text-base leading-relaxed mb-6">
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Developed a web platform for reading and purchasing books</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Implemented user features such as following authors and managing book interactions</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                    <span>Designed relational database structure using PostgreSQL</span>
+                  </li>
+                </ul>
+
+                <div className="flex flex-wrap gap-2 pt-5 border-t border-white/5">
+                  {["Django", "Django REST Framework", "PostgreSQL", "HTML", "CSS", "JavaScript"].map((tech) => (
+                    <span key={tech} className="bg-slate-800/80 text-slate-300 px-3 py-1 rounded-md text-xs font-medium border border-white/5 group-hover:border-accent/30 transition-colors">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
